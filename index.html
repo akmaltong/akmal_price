@@ -659,12 +659,69 @@
   .d3 { transition-delay: 0.25s; }
   .d4 { transition-delay: 0.35s; }
 
+  /* ── CONTACT BUTTONS ── */
+  .cta-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .cta-contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 28px;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.02);
+    text-decoration: none;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .cta-contact-btn:hover {
+    border-color: rgba(201,168,76,0.6);
+    background: rgba(201,168,76,0.06);
+  }
+
+  .cta-contact-icon {
+    font-size: 20px;
+    color: var(--gold);
+    width: 24px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .cta-contact-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .cta-contact-label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-bottom: 3px;
+  }
+
+  .cta-contact-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+  }
+
   @media (max-width: 600px) {
     .card { padding: 28px 24px; }
     .philosophy { padding: 36px 24px; }
     .free-entry { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
     .guarantee { padding: 24px; }
     .card.featured::after { display: none; }
+    .cta-contact-btn { padding: 16px 20px; }
+    .cta-contact-value { font-size: 17px; }
   }
 </style>
 </head>
@@ -737,8 +794,8 @@
           <li>Рекомендации по режиму и образу жизни</li>
         </ul>
         <div class="card-price-row">
-          <div class="card-price">1 800 <span>сомони</span></div>
-          <div class="card-per">600 сомони<br>за сессию</div>
+          <div class="card-price">2 100 <span>сомони</span></div>
+          <div class="card-per">700 сомони<br>за сессию</div>
         </div>
       </div>
 
@@ -755,8 +812,8 @@
           <li>Элементы Нэйгун — внутренняя работа</li>
         </ul>
         <div class="card-price-row">
-          <div class="card-price">2 800 <span>сомони</span></div>
-          <div class="card-per">560 сомони<br>за сессию</div>
+          <div class="card-price">3 250 <span>сомони</span></div>
+          <div class="card-per">650 сомони<br>за сессию</div>
         </div>
       </div>
 
@@ -773,8 +830,8 @@
           <li>Личный план практики между сессиями</li>
         </ul>
         <div class="card-price-row">
-          <div class="card-price">5 000 <span>сомони</span></div>
-          <div class="card-per">500 сомони<br>за сессию</div>
+          <div class="card-price">6 000 <span>сомони</span></div>
+          <div class="card-per">600 сомони<br>за сессию</div>
         </div>
       </div>
 
@@ -792,7 +849,7 @@
           <li>Личный протокол здоровья на весь год</li>
         </ul>
         <div class="card-price-row">
-          <div class="card-price">18 000 <span>сомони</span></div>
+          <div class="card-price">18 000 <span>сомони / год</span></div>
           <div class="card-per">1 500 сомони<br>в месяц</div>
         </div>
       </div>
@@ -814,21 +871,21 @@
         <div class="therapy-name">Чжэнь Цзю</div>
         <div class="therapy-duration">Иглотерапия · 45–60 мин</div>
         <div class="therapy-desc">Традиционная китайская акупунктура. Устранение болей, нормализация сна, снятие хронического стресса.</div>
-        <div class="therapy-price">350 <span>сомони / сеанс</span></div>
+        <div class="therapy-price">400 <span>сомони / сеанс</span></div>
       </div>
 
       <div class="therapy-card reveal d2">
         <div class="therapy-name">Курс Чжэнь Цзю</div>
-        <div class="therapy-duration">5 сеансов · со скидкой</div>
+        <div class="therapy-duration">5 сеансов · скидка 15%</div>
         <div class="therapy-desc">Базовый терапевтический курс для устойчивого результата. Оптимально для первого знакомства с методом.</div>
-        <div class="therapy-price">1 500 <span>сомони / курс</span></div>
+        <div class="therapy-price">1 700 <span>сомони / курс</span></div>
       </div>
 
       <div class="therapy-card reveal d3">
         <div class="therapy-name">Точечный массаж</div>
         <div class="therapy-duration">Туйна · 60 мин</div>
         <div class="therapy-desc">Работа с мышечными зажимами, восстановление после интенсивной работы. Мгновенный эффект расслабления.</div>
-        <div class="therapy-price">300 <span>сомони / сеанс</span></div>
+        <div class="therapy-price">350 <span>сомони / сеанс</span></div>
       </div>
 
       <div class="therapy-card reveal d4">
@@ -863,7 +920,7 @@
         <div class="event-name">Мастер-класс</div>
         <div class="event-format">2 часа · Суббота</div>
         <div class="event-desc">Введение в практику. Подходит для первого знакомства с методами или для команды.</div>
-        <div class="event-price">200 <span>сомони / участник</span></div>
+        <div class="event-price">250 <span>сомони / участник</span></div>
       </div>
 
       <div class="event-card reveal d3">
@@ -871,7 +928,7 @@
         <div class="event-name">Выездной ретрит</div>
         <div class="event-format">3 дня · На природе · Всё включено</div>
         <div class="event-desc">Интенсивное погружение: практика, терапия, питание, проживание. Перезагрузка на глубоком уровне.</div>
-        <div class="event-price">2 000 <span>сомони / чел</span></div>
+        <div class="event-price">1 500–2 000 <span>сомони / чел</span></div>
       </div>
 
       <div class="event-card reveal d4">
@@ -879,7 +936,7 @@
         <div class="event-name">Корпоративный выезд</div>
         <div class="event-format">Для команды · По договорённости</div>
         <div class="event-desc">Практика для команды руководителей. Управление стрессом, командная энергия, ясность.</div>
-        <div class="event-price">от 800 <span>сомони / занятие</span></div>
+        <div class="event-price">от 1 500 <span>сомони / занятие</span></div>
       </div>
     </div>
   </div>
@@ -900,7 +957,29 @@
   <div class="cta-section">
     <div class="cta-title">Начните с диагностики</div>
     <p class="cta-sub">Первая встреча — бесплатно. Без обязательств. 60 минут.</p>
-    <a href="https://t.me/" class="cta-btn">Написать в Telegram</a>
+    <div class="cta-contacts reveal">
+      <a href="tel:+992114046050" class="cta-contact-btn">
+        <span class="cta-contact-icon">☎</span>
+        <span class="cta-contact-info">
+          <span class="cta-contact-label">Таджикистан</span>
+          <span class="cta-contact-value">Позвонить</span>
+        </span>
+      </a>
+      <a href="https://t.me/akmaltong" class="cta-contact-btn">
+        <span class="cta-contact-icon">✈</span>
+        <span class="cta-contact-info">
+          <span class="cta-contact-label">Написать</span>
+          <span class="cta-contact-value">Telegram</span>
+        </span>
+      </a>
+      <a href="https://wa.me/79999037173" class="cta-contact-btn">
+        <span class="cta-contact-icon">◉</span>
+        <span class="cta-contact-info">
+          <span class="cta-contact-label">Написать</span>
+          <span class="cta-contact-value">WhatsApp</span>
+        </span>
+      </a>
+    </div>
   </div>
 </div>
 
