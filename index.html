@@ -3,17 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Акмал — Мастер восточных практик</title>
+<title>Акмал — Восточные практики · Худжанд</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #0e0d0b;
     --gold: #c9a84c;
-    --gold-light: #e8d08a;
-    --gold-dim: rgba(201,168,76,0.15);
     --cream: #f5f0e8;
     --warm-gray: #8a8278;
     --line: rgba(201,168,76,0.25);
+    --card-bg: rgba(255,255,255,0.02);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,7 +26,6 @@
     overflow-x: hidden;
   }
 
-  /* NOISE TEXTURE OVERLAY */
   body::before {
     content: '';
     position: fixed;
@@ -38,971 +36,482 @@
     opacity: 0.4;
   }
 
-  .container {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 0 24px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ── HEADER ── */
-  header {
-    padding: 64px 24px 48px;
-    text-align: center;
-    position: relative;
-  }
-
-  .header-ornament {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin-bottom: 32px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.1s forwards;
-  }
-
-  .ornament-line {
-    width: 60px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold));
-  }
-  .ornament-line.right {
-    background: linear-gradient(90deg, var(--gold), transparent);
-  }
-
-  .ornament-symbol {
-    color: var(--gold);
-    font-size: 18px;
-    font-family: 'Cormorant Garamond', serif;
-    letter-spacing: 4px;
-  }
-
-  .master-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(38px, 8vw, 64px);
-    font-weight: 300;
-    letter-spacing: 0.06em;
-    line-height: 1.1;
-    color: var(--cream);
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-  }
-
-  .master-title em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  .master-subtitle {
-    margin-top: 16px;
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--warm-gray);
-    opacity: 0;
-    animation: fadeUp 0.8s 0.35s forwards;
-  }
-
-  .header-divider {
-    width: 1px;
-    height: 48px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-    margin: 32px auto 0;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.45s forwards;
-  }
-
-  /* ── INTRO ── */
-  .intro {
-    padding: 40px 0 56px;
-    text-align: center;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.55s forwards;
-  }
-
-  .intro-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(18px, 3.5vw, 24px);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--cream);
-    line-height: 1.7;
-    max-width: 580px;
-    margin: 0 auto;
-    opacity: 0.85;
-  }
-
-  /* ── SECTION LABEL ── */
-  .section-label {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-
-  .section-label-text {
-    font-size: 9px;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--gold);
-    white-space: nowrap;
-  }
-
-  .section-label-line {
-    flex: 1;
-    height: 1px;
-    background: var(--line);
-  }
-
-  /* ── CARDS ── */
-  .cards-grid {
-    display: grid;
-    gap: 2px;
-    margin-bottom: 2px;
-  }
-
-  .card {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--line);
-    padding: 36px 40px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.4s, background 0.4s;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  .card.visible {
-    animation: fadeUp 0.6s forwards;
-  }
-
-  .card:hover {
-    border-color: rgba(201,168,76,0.5);
-    background: rgba(201,168,76,0.04);
-  }
-
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 0;
-    background: var(--gold);
-    transition: height 0.4s;
-  }
-
-  .card:hover::before { height: 100%; }
-
-  .card-number {
-    position: absolute;
-    top: 28px; right: 36px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 56px;
-    font-weight: 300;
-    color: rgba(201,168,76,0.08);
-    line-height: 1;
-    pointer-events: none;
-    transition: color 0.4s;
-  }
-
-  .card:hover .card-number {
-    color: rgba(201,168,76,0.15);
-  }
-
-  .card-tag {
-    font-size: 9px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 12px;
-    display: block;
-  }
-
-  .card-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(22px, 4vw, 30px);
-    font-weight: 400;
-    color: var(--cream);
-    margin-bottom: 6px;
-    line-height: 1.2;
-  }
-
-  .card-desc {
-    font-size: 12px;
-    color: var(--warm-gray);
-    letter-spacing: 0.05em;
-    margin-bottom: 20px;
-    line-height: 1.7;
-  }
-
-  .card-features {
-    list-style: none;
-    margin-bottom: 24px;
-  }
-
-  .card-features li {
-    font-size: 12px;
-    color: rgba(245,240,232,0.7);
-    padding: 6px 0;
-    border-bottom: 1px solid rgba(201,168,76,0.08);
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    line-height: 1.5;
-  }
-
-  .card-features li::before {
-    content: '—';
-    color: var(--gold);
-    font-size: 10px;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .card-price-row {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 4px;
-  }
-
-  .card-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 6vw, 44px);
-    font-weight: 300;
-    color: var(--gold);
-    line-height: 1;
-  }
-
-  .card-price span {
-    font-size: 14px;
-    color: var(--warm-gray);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    margin-left: 4px;
-  }
-
-  .card-per {
-    font-size: 11px;
-    color: var(--warm-gray);
-    letter-spacing: 0.1em;
-    text-align: right;
-  }
-
-  /* FEATURED CARD */
-  .card.featured {
-    border-color: rgba(201,168,76,0.4);
-    background: rgba(201,168,76,0.04);
-  }
-
-  .card.featured::after {
-    content: 'РЕКОМЕНДУЕТСЯ';
-    position: absolute;
-    top: 28px; right: 36px;
-    font-size: 8px;
-    letter-spacing: 0.3em;
-    color: var(--gold);
-    border: 1px solid var(--gold);
-    padding: 4px 10px;
-  }
-
-  .card.featured .card-number { display: none; }
-
-  /* ── THERAPY SECTION ── */
-  .therapy-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    margin-bottom: 2px;
-  }
-
-  @media (max-width: 560px) {
-    .therapy-grid { grid-template-columns: 1fr; }
-  }
-
-  .therapy-card {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--line);
-    padding: 28px 32px;
-    transition: border-color 0.4s, background 0.4s;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  .therapy-card.visible {
-    animation: fadeUp 0.6s forwards;
-  }
-
-  .therapy-card:hover {
-    border-color: rgba(201,168,76,0.5);
-    background: rgba(201,168,76,0.04);
-  }
-
-  .therapy-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--cream);
-    margin-bottom: 6px;
-  }
-
-  .therapy-duration {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--warm-gray);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .therapy-desc {
-    font-size: 12px;
-    color: rgba(245,240,232,0.6);
-    line-height: 1.7;
-    margin-bottom: 16px;
-  }
-
-  .therapy-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 300;
-    color: var(--gold);
-  }
-
-  .therapy-price span {
-    font-size: 12px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    color: var(--warm-gray);
-    margin-left: 4px;
-  }
-
-  /* ── EVENTS ── */
-  .events-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-  }
-
-  @media (max-width: 560px) {
-    .events-grid { grid-template-columns: 1fr; }
-  }
-
-  .event-card {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--line);
-    padding: 28px 32px;
-    transition: border-color 0.4s, background 0.4s;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  .event-card.visible {
-    animation: fadeUp 0.6s forwards;
-  }
-
-  .event-card:hover {
-    border-color: rgba(201,168,76,0.5);
-    background: rgba(201,168,76,0.04);
-  }
-
-  .event-icon {
-    font-size: 24px;
-    margin-bottom: 12px;
-    display: block;
-  }
-
-  .event-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--cream);
-    margin-bottom: 6px;
-  }
-
-  .event-format {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--warm-gray);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .event-desc {
-    font-size: 12px;
-    color: rgba(245,240,232,0.6);
-    line-height: 1.7;
-    margin-bottom: 16px;
-  }
-
-  .event-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 300;
-    color: var(--gold);
-  }
-
-  .event-price span {
-    font-size: 12px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    color: var(--warm-gray);
-    margin-left: 4px;
-  }
-
-  /* ── SECTION ── */
-  section {
-    padding: 56px 0;
-  }
-
-  /* ── PHILOSOPHY BOX ── */
-  .philosophy {
-    border: 1px solid var(--line);
-    padding: 48px 48px;
-    text-align: center;
-    position: relative;
-    margin: 0;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.3s forwards;
-    background: rgba(201,168,76,0.03);
-  }
-
-  .philosophy-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(20px, 4vw, 28px);
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1.7;
-    color: var(--cream);
-    max-width: 560px;
-    margin: 0 auto 24px;
-  }
-
-  .philosophy-author {
-    font-size: 10px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  /* ── FREE ENTRY ── */
-  .free-entry {
-    border: 1px solid rgba(201,168,76,0.5);
-    background: rgba(201,168,76,0.05);
-    padding: 32px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.2s forwards;
-  }
-
-  .free-entry-left {}
-
-  .free-tag {
-    font-size: 9px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 8px;
-    display: block;
-  }
-
-  .free-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 400;
-    color: var(--cream);
-    margin-bottom: 6px;
-  }
-
-  .free-desc {
-    font-size: 12px;
-    color: var(--warm-gray);
-    line-height: 1.6;
-  }
-
-  .free-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 42px;
-    font-weight: 300;
-    color: var(--gold);
-    white-space: nowrap;
-  }
-
-  .free-price small {
-    font-size: 13px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    color: var(--warm-gray);
-    display: block;
-    text-align: right;
-    margin-top: 2px;
-  }
-
-  /* ── GUARANTEE ── */
-  .guarantee {
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 28px 40px;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.4s forwards;
-  }
-
-  .guarantee-icon {
-    font-size: 28px;
-    flex-shrink: 0;
-  }
-
-  .guarantee-text {
-    font-size: 12px;
-    color: var(--warm-gray);
-    line-height: 1.7;
-  }
-
-  .guarantee-text strong {
-    color: var(--cream);
-    font-weight: 400;
-  }
-
-  /* ── CTA ── */
-  .cta-section {
-    text-align: center;
-    padding: 64px 0;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.3s forwards;
-  }
-
-  .cta-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 6vw, 42px);
-    font-weight: 300;
-    color: var(--cream);
-    margin-bottom: 12px;
-  }
-
-  .cta-sub {
-    font-size: 12px;
-    color: var(--warm-gray);
-    letter-spacing: 0.08em;
-    margin-bottom: 36px;
-  }
-
-  .cta-btn {
-    display: inline-block;
-    padding: 16px 48px;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background 0.3s, color 0.3s;
-    cursor: pointer;
-    background: transparent;
-  }
-
-  .cta-btn:hover {
-    background: var(--gold);
-    color: var(--ink);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--line);
-    padding: 32px 24px;
-    text-align: center;
-  }
-
-  .footer-note {
-    font-size: 11px;
-    color: var(--warm-gray);
-    line-height: 1.7;
-    letter-spacing: 0.05em;
-  }
-
-  .footer-note strong {
-    color: var(--gold);
-    font-weight: 400;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s, transform 0.7s;
-  }
-
-  .reveal.shown {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ── DELAY UTILITIES ── */
-  .d1 { transition-delay: 0.05s; }
-  .d2 { transition-delay: 0.15s; }
-  .d3 { transition-delay: 0.25s; }
-  .d4 { transition-delay: 0.35s; }
-
-  /* ── CONTACT BUTTONS ── */
-  .cta-contacts {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: 420px;
-    margin: 0 auto;
-  }
-
-  .cta-contact-btn {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 18px 28px;
-    border: 1px solid var(--line);
-    background: rgba(255,255,255,0.02);
-    text-decoration: none;
-    transition: border-color 0.3s, background 0.3s;
-  }
-
-  .cta-contact-btn:hover {
-    border-color: rgba(201,168,76,0.6);
-    background: rgba(201,168,76,0.06);
-  }
-
-  .cta-contact-icon {
-    font-size: 20px;
-    color: var(--gold);
-    width: 24px;
-    flex-shrink: 0;
-    text-align: center;
-  }
-
-  .cta-contact-info {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-  }
-
-  .cta-contact-label {
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--warm-gray);
-    margin-bottom: 3px;
-  }
-
-  .cta-contact-value {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--cream);
-    letter-spacing: 0.05em;
-  }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* HEADER */
+  header { padding: 72px 24px 56px; text-align: center; }
+
+  .ornament { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 36px; opacity: 0; animation: fadeUp 0.8s 0.1s forwards; }
+  .ornament-line { width: 56px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+  .ornament-line.r { background: linear-gradient(90deg, var(--gold), transparent); }
+  .ornament-sym { color: var(--gold); font-size: 16px; font-family: 'Cormorant Garamond', serif; letter-spacing: 6px; }
+
+  .master-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px, 10vw, 80px); font-weight: 300; letter-spacing: 0.08em; color: var(--cream); line-height: 1; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .master-name em { font-style: italic; color: var(--gold); }
+
+  .master-arts { margin-top: 20px; font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--warm-gray); opacity: 0; animation: fadeUp 0.8s 0.35s forwards; line-height: 2.2; }
+
+  .header-line { width: 1px; height: 56px; background: linear-gradient(to bottom, var(--gold), transparent); margin: 36px auto 0; opacity: 0; animation: fadeUp 0.8s 0.45s forwards; }
+
+  /* STORY */
+  .story { padding: 64px 0; border-bottom: 1px solid var(--line); }
+
+  .story-inner { display: grid; grid-template-columns: 140px 1fr; gap: 48px; align-items: start; }
+
+  @media (max-width: 620px) { .story-inner { grid-template-columns: 1fr; gap: 24px; } }
+
+  .story-label { font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); padding-top: 6px; }
+
+  .story-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 3vw, 22px); font-weight: 300; line-height: 1.85; color: var(--cream); opacity: 0.9; }
+  .story-text p + p { margin-top: 20px; }
+  .story-text strong { font-weight: 400; color: var(--gold); font-style: italic; }
+
+  .story-facts { margin-top: 28px; display: flex; flex-direction: column; gap: 10px; }
+  .story-fact { display: flex; align-items: baseline; gap: 10px; font-size: 12px; color: rgba(245,240,232,0.55); line-height: 1.6; }
+  .story-fact::before { content: '—'; color: var(--gold); font-size: 10px; flex-shrink: 0; }
+
+  /* SECTION */
+  .sec-label { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .sec-label-text { font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+  .sec-label-line { flex: 1; height: 1px; background: var(--line); }
+
+  .price-block { padding: 56px 0; border-bottom: 1px solid var(--line); }
+
+  /* PRICE ROW */
+  .price-row { display: grid; grid-template-columns: 1fr 1px 1fr; border: 1px solid var(--line); margin-bottom: 2px; background: var(--card-bg); transition: border-color 0.3s, background 0.3s; }
+  .price-row:hover { border-color: rgba(201,168,76,0.45); background: rgba(201,168,76,0.03); }
+  .price-row-divider { background: var(--line); }
+  .price-row-left { padding: 28px 32px; }
+  .price-row-right { padding: 28px 32px; }
+
+  .pr-tag { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; display: block; }
+  .pr-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 3.5vw, 26px); font-weight: 400; color: var(--cream); margin-bottom: 8px; line-height: 1.2; }
+  .pr-duration { font-size: 11px; color: var(--warm-gray); letter-spacing: 0.1em; margin-bottom: 14px; }
+  .pr-desc { font-size: 12px; color: rgba(245,240,232,0.6); line-height: 1.8; }
+
+  .pr-compare { display: flex; flex-direction: column; }
+  .pr-compare-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(201,168,76,0.07); gap: 12px; }
+  .pr-compare-row:last-child { border-bottom: none; }
+  .pr-compare-label { font-size: 10px; letter-spacing: 0.08em; color: var(--warm-gray); flex-shrink: 0; }
+  .pr-compare-val { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 400; color: var(--cream); text-align: right; }
+  .pr-compare-val.hi { color: var(--gold); font-size: 22px; }
+  .pr-compare-val.dim { color: rgba(138,130,120,0.7); font-size: 15px; }
+
+  .why-note { border: 1px solid var(--line); border-top: none; padding: 16px 32px; background: rgba(201,168,76,0.02); margin-bottom: 2px; }
+  .why-note p { font-size: 11px; color: rgba(245,240,232,0.5); line-height: 1.85; font-style: italic; }
+  .why-note p strong { color: rgba(245,240,232,0.8); font-style: normal; font-weight: 400; }
+
+  @media (max-width: 580px) {
+    .price-row { grid-template-columns: 1fr; }
+    .price-row-divider { height: 1px; width: 100%; }
+    .price-row-left { padding: 24px 20px 0; }
+    .price-row-right { padding: 20px 20px 24px; }
+    .why-note { padding: 14px 20px; }
+  }
+
+  /* GUARANTEE */
+  .guarantee { border: 1px solid var(--line); padding: 32px 40px; display: flex; align-items: center; gap: 24px; margin-top: 56px; background: var(--card-bg); }
+  .guarantee-icon { font-size: 22px; flex-shrink: 0; color: var(--gold); }
+  .guarantee-text { font-size: 12px; color: var(--warm-gray); line-height: 1.85; }
+  .guarantee-text strong { color: var(--cream); font-weight: 400; }
+
+  /* CTA */
+  .cta-section { text-align: center; padding: 72px 0; }
+  .cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 6vw, 46px); font-weight: 300; color: var(--cream); margin-bottom: 12px; }
+  .cta-sub { font-size: 12px; color: var(--warm-gray); letter-spacing: 0.08em; margin-bottom: 40px; }
+  .cta-contacts { display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: 0 auto; }
+  .cta-btn { display: flex; align-items: center; gap: 20px; padding: 18px 28px; border: 1px solid var(--line); background: var(--card-bg); text-decoration: none; transition: border-color 0.3s, background 0.3s; }
+  .cta-btn:hover { border-color: rgba(201,168,76,0.6); background: rgba(201,168,76,0.05); }
+  .cta-btn-icon { font-size: 18px; color: var(--gold); width: 22px; text-align: center; flex-shrink: 0; }
+  .cta-btn-info { display: flex; flex-direction: column; text-align: left; }
+  .cta-btn-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 3px; }
+  .cta-btn-val { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--cream); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--line); padding: 36px 24px; text-align: center; }
+  .footer-note { font-size: 11px; color: var(--warm-gray); line-height: 2; letter-spacing: 0.04em; }
+  .footer-note strong { color: var(--gold); font-weight: 400; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s; }
+  .reveal.shown { opacity: 1; transform: translateY(0); }
+  .d1 { transition-delay: 0.1s; }
+  .d2 { transition-delay: 0.2s; }
 
   @media (max-width: 600px) {
-    .card { padding: 28px 24px; }
-    .philosophy { padding: 36px 24px; }
-    .free-entry { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
-    .guarantee { padding: 24px; }
-    .card.featured::after { display: none; }
-    .cta-contact-btn { padding: 16px 20px; }
-    .cta-contact-value { font-size: 17px; }
+    .guarantee { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
-  <div class="header-ornament">
+  <div class="ornament">
     <div class="ornament-line"></div>
-    <div class="ornament-symbol">☯</div>
-    <div class="ornament-line right"></div>
+    <div class="ornament-sym">☯</div>
+    <div class="ornament-line r"></div>
   </div>
-  <h1 class="master-title">Акмал<br><em>Мастер</em></h1>
-  <p class="master-subtitle">Тайцзицюань · Вин Чун · Цигун · Нэйгун · Чжэнь Цзю</p>
-  <div class="header-divider"></div>
+  <div class="master-name">Акмал <em>Тонг</em></div>
+  <div class="master-arts">
+    Тайцзицюань · Вин Чун · Цигун · Нэйгун<br>
+    Акупунктурная диагностика и терапия · Чжэнь Цзю
+  </div>
+  <div class="header-line"></div>
 </header>
 
-<!-- INTRO -->
 <div class="container">
-  <div class="intro">
-    <p class="intro-text">
-      Восточные практики для тех, кто управляет бизнесом и людьми.<br>
-      Сила, ясность ума и здоровье — как основа высокой эффективности.
-    </p>
-  </div>
-</div>
 
-<!-- PHILOSOPHY -->
-<div class="container">
-  <div class="philosophy reveal">
-    <p class="philosophy-quote">
-      «Руководитель, который управляет своим телом и энергией,
-      управляет ситуацией. Всё остальное — следствие.»
-    </p>
-    <p class="philosophy-author">— 27 лет практики · Таджикистан · Москва</p>
-  </div>
-</div>
-
-<!-- INDIVIDUAL PROGRAMS -->
-<section>
-  <div class="container">
-    <div class="section-label reveal">
-      <span class="section-label-text">Индивидуальные программы</span>
-      <div class="section-label-line"></div>
-    </div>
-
-    <div class="cards-grid">
-
-      <!-- FREE ENTRY -->
-      <div class="free-entry reveal">
-        <div class="free-entry-left">
-          <span class="free-tag">Входная точка</span>
-          <div class="free-title">Первичная диагностика</div>
-          <div class="free-desc">60 минут · Разбор состояния здоровья и энергии · Определение программы · Без обязательств</div>
+  <!-- STORY -->
+  <div class="story reveal">
+    <div class="story-inner">
+      <div class="story-label">О мастере</div>
+      <div>
+        <div class="story-text">
+          <p>Я практикую и преподаю восточные боевые и оздоровительные искусства <strong>28 лет</strong>. Последние годы работал в Москве — проводил персональные занятия, семинары для терапевтов и специалистов, сеансы акупунктурной диагностики и терапии.</p>
+          <p>Теперь я вернулся в <strong>Худжанд</strong> — и привёз всё то, что передавал ученикам в Москве. Тот же подход, та же глубина, те же методы. Только здесь.</p>
         </div>
-        <div>
-          <div class="free-price">Бесплатно<small>первый визит</small></div>
+        <div class="story-facts">
+          <div class="story-fact">28 лет практики · 20 лет преподавания</div>
+          <div class="story-fact">Персональные занятия в Москве — Тайцзицюань, Вин Чун, Цигун, Нэйгун</div>
+          <div class="story-fact">Семинары по акупунктуре для терапевтов и специалистов</div>
+          <div class="story-fact">Индивидуальные сеансы акупунктурной диагностики и терапии</div>
         </div>
-      </div>
-
-      <!-- CARD 1 -->
-      <div class="card reveal d1">
-        <div class="card-number">01</div>
-        <span class="card-tag">Старт</span>
-        <div class="card-name">Знакомство</div>
-        <div class="card-desc">3 персональные сессии · Пробный формат работы</div>
-        <ul class="card-features">
-          <li>Базовые практики Тайцзицюань и Цигун</li>
-          <li>Диагностика состояния и постановка задач</li>
-          <li>Рекомендации по режиму и образу жизни</li>
-        </ul>
-        <div class="card-price-row">
-          <div class="card-price">2 100 <span>сомони</span></div>
-          <div class="card-per">700 сомони<br>за сессию</div>
-        </div>
-      </div>
-
-      <!-- CARD 2 -->
-      <div class="card reveal d2">
-        <div class="card-number">02</div>
-        <span class="card-tag">Основа</span>
-        <div class="card-name">Погружение</div>
-        <div class="card-desc">5 персональных сессий · Первые устойчивые результаты</div>
-        <ul class="card-features">
-          <li>Тайцзицюань / Вин Чун по запросу</li>
-          <li>Работа с дыханием и энергией (Цигун)</li>
-          <li>Техники восстановления после нагрузок</li>
-          <li>Элементы Нэйгун — внутренняя работа</li>
-        </ul>
-        <div class="card-price-row">
-          <div class="card-price">3 250 <span>сомони</span></div>
-          <div class="card-per">650 сомони<br>за сессию</div>
-        </div>
-      </div>
-
-      <!-- CARD 3 FEATURED -->
-      <div class="card featured reveal d1">
-        <span class="card-tag">Трансформация</span>
-        <div class="card-name">Прогресс</div>
-        <div class="card-desc">10 персональных сессий · Глубокая перестройка состояния</div>
-        <ul class="card-features">
-          <li>Полный комплекс Тайцзицюань и Нэйгун</li>
-          <li>Чжэнь Цзю терапия по показаниям</li>
-          <li>Работа со стрессом, тревогой, сном</li>
-          <li>Управление энергией в переговорах и решениях</li>
-          <li>Личный план практики между сессиями</li>
-        </ul>
-        <div class="card-price-row">
-          <div class="card-price">6 000 <span>сомони</span></div>
-          <div class="card-per">600 сомони<br>за сессию</div>
-        </div>
-      </div>
-
-      <!-- CARD 4 -->
-      <div class="card reveal d2">
-        <div class="card-number">04</div>
-        <span class="card-tag">Годовое сопровождение</span>
-        <div class="card-name">Мастерство</div>
-        <div class="card-desc">40 + 2 сессии · Полный год работы с мастером</div>
-        <ul class="card-features">
-          <li>Все направления практики без ограничений</li>
-          <li>Чжэнь Цзю терапия включена</li>
-          <li>Приоритетный доступ и гибкое расписание</li>
-          <li>Корпоративный выезд к команде (1 раз)</li>
-          <li>Личный протокол здоровья на весь год</li>
-        </ul>
-        <div class="card-price-row">
-          <div class="card-price">18 000 <span>сомони / год</span></div>
-          <div class="card-per">1 500 сомони<br>в месяц</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- THERAPY -->
-<section style="padding-top:0">
-  <div class="container">
-    <div class="section-label reveal">
-      <span class="section-label-text">Терапия и восстановление</span>
-      <div class="section-label-line"></div>
-    </div>
-
-    <div class="therapy-grid">
-      <div class="therapy-card reveal d1">
-        <div class="therapy-name">Чжэнь Цзю</div>
-        <div class="therapy-duration">Иглотерапия · 45–60 мин</div>
-        <div class="therapy-desc">Традиционная китайская акупунктура. Устранение болей, нормализация сна, снятие хронического стресса.</div>
-        <div class="therapy-price">400 <span>сомони / сеанс</span></div>
-      </div>
-
-      <div class="therapy-card reveal d2">
-        <div class="therapy-name">Курс Чжэнь Цзю</div>
-        <div class="therapy-duration">5 сеансов · скидка 15%</div>
-        <div class="therapy-desc">Базовый терапевтический курс для устойчивого результата. Оптимально для первого знакомства с методом.</div>
-        <div class="therapy-price">1 700 <span>сомони / курс</span></div>
-      </div>
-
-      <div class="therapy-card reveal d3">
-        <div class="therapy-name">Точечный массаж</div>
-        <div class="therapy-duration">Туйна · 60 мин</div>
-        <div class="therapy-desc">Работа с мышечными зажимами, восстановление после интенсивной работы. Мгновенный эффект расслабления.</div>
-        <div class="therapy-price">350 <span>сомони / сеанс</span></div>
-      </div>
-
-      <div class="therapy-card reveal d4">
-        <div class="therapy-name">Комплексная диагностика</div>
-        <div class="therapy-duration">Первичный приём · 60 мин</div>
-        <div class="therapy-desc">Пульсовая диагностика, оценка состояния по традиционной китайской медицине, составление персонального протокола.</div>
-        <div class="therapy-price">Бесплатно <span>первый раз</span></div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- EVENTS -->
-<section style="padding-top:0">
-  <div class="container">
-    <div class="section-label reveal">
-      <span class="section-label-text">Форматы для групп</span>
-      <div class="section-label-line"></div>
+  <!-- ГРУППА -->
+  <div class="price-block reveal">
+    <div class="sec-label">
+      <span class="sec-label-text">Закрытая группа</span>
+      <div class="sec-label-line"></div>
     </div>
 
-    <div class="events-grid">
-      <div class="event-card reveal d1">
-        <span class="event-icon">◈</span>
-        <div class="event-name">Закрытая группа</div>
-        <div class="event-format">До 5 человек · 8 занятий в месяц</div>
-        <div class="event-desc">Практика в малой группе руководителей. Формат клуба — закрытый, без посторонних.</div>
-        <div class="event-price">700 <span>сомони / мес</span></div>
+    <div class="price-row">
+      <div class="price-row-left">
+        <span class="pr-tag">4 человека · На природе</span>
+        <div class="pr-name">Утренняя практика</div>
+        <div class="pr-duration">90 минут · Тайцзицюань / Цигун / Вин Чун</div>
+        <div class="pr-desc">Живая передача практики от мастера. Не поток, не секция — 4 человека, личное внимание, открытый воздух. То, чего нет ни в одном зале Худжанда.</div>
       </div>
-
-      <div class="event-card reveal d2">
-        <span class="event-icon">◈</span>
-        <div class="event-name">Мастер-класс</div>
-        <div class="event-format">2 часа · Суббота</div>
-        <div class="event-desc">Введение в практику. Подходит для первого знакомства с методами или для команды.</div>
-        <div class="event-price">250 <span>сомони / участник</span></div>
+      <div class="price-row-divider"></div>
+      <div class="price-row-right">
+        <div class="pr-compare">
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Премиум фитнес-зал Худжанда</span>
+            <span class="pr-compare-val dim">600 сомони / 8 занятий</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Аналоги в Москве</span>
+            <span class="pr-compare-val dim">235–412 сом / занятие</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Разовое занятие</span>
+            <span class="pr-compare-val">200 сомони</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Абонемент · 8 занятий / мес</span>
+            <span class="pr-compare-val hi">1 200 сомони</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">За занятие в абонементе</span>
+            <span class="pr-compare-val">150 сомони</span>
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="why-note">
+      <p>Абонемент в лучший зал Худжанда — <strong>600 сомони</strong> за 8 занятий по 60 минут на тренажёрах. Здесь — <strong>1 200 сомони</strong> за 8 занятий по <strong>90 минут</strong> с мастером на природе, 4 человека. Это не дороже. Это другой продукт.</p>
+    </div>
+  </div>
 
-      <div class="event-card reveal d3">
-        <span class="event-icon">◈</span>
-        <div class="event-name">Выездной ретрит</div>
-        <div class="event-format">3 дня · На природе · Всё включено</div>
-        <div class="event-desc">Интенсивное погружение: практика, терапия, питание, проживание. Перезагрузка на глубоком уровне.</div>
-        <div class="event-price">1 500–2 000 <span>сомони / чел</span></div>
+  <!-- ПЕРСОНАЛЬНЫЕ -->
+  <div class="price-block reveal d1">
+    <div class="sec-label">
+      <span class="sec-label-text">Персональные занятия</span>
+      <div class="sec-label-line"></div>
+    </div>
+
+    <div class="price-row">
+      <div class="price-row-left">
+        <span class="pr-tag">Один на один · 90 минут</span>
+        <div class="pr-name">Персональный класс</div>
+        <div class="pr-duration">Тайцзицюань · Вин Чун · Цигун · Нэйгун</div>
+        <div class="pr-desc">Индивидуальная программа под вашу цель и состояние. Рекомендации для самостоятельной практики между встречами. Поддержка в мессенджере.</div>
       </div>
+      <div class="price-row-divider"></div>
+      <div class="price-row-right">
+        <div class="pr-compare">
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Мои занятия в Москве</span>
+            <span class="pr-compare-val dim">8 000–12 000 ₽</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Рынок Москвы (мастера)</span>
+            <span class="pr-compare-val dim">3 500–8 000 ₽</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Аналоги в Худжанде</span>
+            <span class="pr-compare-val dim">250–400 сомони</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Разовое занятие</span>
+            <span class="pr-compare-val">500 сомони</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">В абонементе · от 5 занятий</span>
+            <span class="pr-compare-val hi">400 сомони</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-note">
+      <p>В Москве персональное занятие с мастером стоит <strong>от 8 000 ₽ (≈ 940 сомони)</strong>. Здесь — <strong>400–500 сомони</strong>. Тот же опыт. Та же глубина. Худжанд.</p>
+    </div>
+  </div>
 
-      <div class="event-card reveal d4">
-        <span class="event-icon">◈</span>
-        <div class="event-name">Корпоративный выезд</div>
-        <div class="event-format">Для команды · По договорённости</div>
-        <div class="event-desc">Практика для команды руководителей. Управление стрессом, командная энергия, ясность.</div>
-        <div class="event-price">от 1 500 <span>сомони / занятие</span></div>
+  <!-- ДИАГНОСТИКА -->
+  <div class="price-block reveal">
+    <div class="sec-label">
+      <span class="sec-label-text">Акупунктурная диагностика</span>
+      <div class="sec-label-line"></div>
+    </div>
+
+    <div class="price-row">
+      <div class="price-row-left">
+        <span class="pr-tag">Чжэнь Цзю · Диагностика</span>
+        <div class="pr-name">Сеанс диагностики</div>
+        <div class="pr-duration">60 минут · Первичная и повторная</div>
+        <div class="pr-desc">Определение состояния тела и энергетических каналов методами традиционной китайской медицины. Пульсовая диагностика. Составление протокола лечения.</div>
+      </div>
+      <div class="price-row-divider"></div>
+      <div class="price-row-right">
+        <div class="pr-compare">
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Клиники Москвы</span>
+            <span class="pr-compare-val dim">3 000–6 000 ₽</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Аналоги в Худжанде</span>
+            <span class="pr-compare-val dim">150–300 сомони</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Первый сеанс</span>
+            <span class="pr-compare-val hi">Бесплатно</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Повторный сеанс</span>
+            <span class="pr-compare-val">300 сомони</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-note">
+      <p>Первый сеанс диагностики — бесплатно. Вы поймёте метод, я пойму ваше состояние. Без обязательств.</p>
+    </div>
+  </div>
+
+  <!-- ТЕРАПИЯ -->
+  <div class="price-block reveal d1">
+    <div class="sec-label">
+      <span class="sec-label-text">Акупунктурная терапия</span>
+      <div class="sec-label-line"></div>
+    </div>
+
+    <div class="price-row">
+      <div class="price-row-left">
+        <span class="pr-tag">Чжэнь Цзю · Лечение</span>
+        <div class="pr-name">Сеанс терапии</div>
+        <div class="pr-duration">60 минут · Разовый или курс из 5</div>
+        <div class="pr-desc">Традиционная китайская иглотерапия. Боли в спине и шее, нарушения сна, хронический стресс, восстановление. Для устойчивого результата — курс 5 сеансов.</div>
+      </div>
+      <div class="price-row-divider"></div>
+      <div class="price-row-right">
+        <div class="pr-compare">
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Клиники Москвы</span>
+            <span class="pr-compare-val dim">3 400–5 900 ₽</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Аналоги в Худжанде</span>
+            <span class="pr-compare-val dim">150–300 сомони</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Разовый сеанс</span>
+            <span class="pr-compare-val">400 сомони</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Курс · 5 сеансов</span>
+            <span class="pr-compare-val hi">1 500 сомони</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">За сеанс в курсе</span>
+            <span class="pr-compare-val">300 сомони (−25%)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-note">
+      <p>В Москве я проводил семинары по акупунктуре для терапевтов. Сеанс в московской клинике — <strong>от 3 400 ₽ (≈ 400 сомони)</strong>. Здесь — столько же. Опыт не меняется от города.</p>
+    </div>
+  </div>
+
+  <!-- МАСТЕР-КЛАСС + СЕМИНАР -->
+  <div class="price-block reveal">
+    <div class="sec-label">
+      <span class="sec-label-text">Мастер-классы · Семинары</span>
+      <div class="sec-label-line"></div>
+    </div>
+
+    <div class="price-row" style="margin-bottom:2px;">
+      <div class="price-row-left">
+        <span class="pr-tag">Разовый формат</span>
+        <div class="pr-name">Мастер-класс</div>
+        <div class="pr-duration">90 минут · С участника</div>
+        <div class="pr-desc">Погружение в одно направление: Тайцзицюань, Вин Чун или Нэйгун. Теория и живая практика. Подходит для первого знакомства.</div>
+      </div>
+      <div class="price-row-divider"></div>
+      <div class="price-row-right">
+        <div class="pr-compare">
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Студии Москвы</span>
+            <span class="pr-compare-val dim">1 500–3 000 ₽</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Аналоги в Худжанде</span>
+            <span class="pr-compare-val dim">80–120 сомони</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Стоимость</span>
+            <span class="pr-compare-val hi">150 сомони</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-row">
+      <div class="price-row-left">
+        <span class="pr-tag">Полный день</span>
+        <div class="pr-name">Семинар</div>
+        <div class="pr-duration">6 часов · С участника</div>
+        <div class="pr-desc">Глубокая работа с одной темой. Теория, практика, разбор. Для тех, кто хочет системное понимание. Анонс в Telegram за 2 недели.</div>
+      </div>
+      <div class="price-row-divider"></div>
+      <div class="price-row-right">
+        <div class="pr-compare">
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Известный мастер, Москва</span>
+            <span class="pr-compare-val dim">8 000–15 000 ₽</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Аналоги в регионе</span>
+            <span class="pr-compare-val dim">500–900 сомони</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Стоимость</span>
+            <span class="pr-compare-val hi">1 000 сомони</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- GUARANTEE -->
-<div class="container">
+  <!-- РЕТРИТ -->
+  <div class="price-block reveal d1">
+    <div class="sec-label">
+      <span class="sec-label-text">Выездной ретрит</span>
+      <div class="sec-label-line"></div>
+    </div>
+
+    <div class="price-row">
+      <div class="price-row-left">
+        <span class="pr-tag">3 дня · На природе · Всё включено</span>
+        <div class="pr-name">Ретрит</div>
+        <div class="pr-duration">6 часов практики в день · 18 часов итого</div>
+        <div class="pr-desc">Интенсивное погружение вдали от города. Тайцзицюань, Цигун, Нэйгун, акупунктурная терапия. Питание и проживание включены. Полная перезагрузка.</div>
+      </div>
+      <div class="price-row-divider"></div>
+      <div class="price-row-right">
+        <div class="pr-compare">
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Ретриты в Подмосковье</span>
+            <span class="pr-compare-val dim">40 000–80 000 ₽</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Аналоги в регионе</span>
+            <span class="pr-compare-val dim">1 500–3 000 сомони</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">За час практики</span>
+            <span class="pr-compare-val">350 сомони / ч</span>
+          </div>
+          <div class="pr-compare-row">
+            <span class="pr-compare-label">Полный ретрит · 18 ч</span>
+            <span class="pr-compare-val hi">4 000 сомони</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-note">
+      <p>Ретрит в Подмосковье с мастером — от <strong>40 000 ₽ (≈ 4 700 сомони)</strong>. Здесь — <strong>4 000 сомони</strong>, природа Таджикистана, 28 лет опыта, всё включено.</p>
+    </div>
+  </div>
+
+  <!-- GUARANTEE -->
   <div class="guarantee reveal">
     <div class="guarantee-icon">◎</div>
     <div class="guarantee-text">
-      <strong>Гарантия результата.</strong> Если после первого месяца работы вы не почувствуете разницы — возвращаю деньги. Без объяснений. Мне важен ваш результат, а не продажа.
+      <strong>Гарантия.</strong> Если после первого месяца занятий вы не почувствуете разницы — возвращаю деньги. Без объяснений. Мне важен ваш результат.
     </div>
   </div>
-</div>
 
-<!-- CTA -->
-<div class="container">
-  <div class="cta-section">
+  <!-- CTA -->
+  <div class="cta-section reveal">
     <div class="cta-title">Начните с диагностики</div>
-    <p class="cta-sub">Первая встреча — бесплатно. Без обязательств. 60 минут.</p>
-    <div class="cta-contacts reveal">
-      <a href="tel:+992114046050" class="cta-contact-btn">
-        <span class="cta-contact-icon">☎</span>
-        <span class="cta-contact-info">
-          <span class="cta-contact-label">Таджикистан</span>
-          <span class="cta-contact-value">Позвонить</span>
+    <p class="cta-sub">Первый сеанс — бесплатно. Без обязательств.</p>
+    <div class="cta-contacts">
+      <a href="tel:+992114046050" class="cta-btn">
+        <span class="cta-btn-icon">☎</span>
+        <span class="cta-btn-info">
+          <span class="cta-btn-label">Таджикистан</span>
+          <span class="cta-btn-val">Позвонить</span>
         </span>
       </a>
-      <a href="https://t.me/akmaltong" class="cta-contact-btn">
-        <span class="cta-contact-icon">✈</span>
-        <span class="cta-contact-info">
-          <span class="cta-contact-label">Написать</span>
-          <span class="cta-contact-value">Telegram</span>
+      <a href="https://t.me/akmaltong" class="cta-btn">
+        <span class="cta-btn-icon">✈</span>
+        <span class="cta-btn-info">
+          <span class="cta-btn-label">Написать</span>
+          <span class="cta-btn-val">Telegram</span>
         </span>
       </a>
-      <a href="https://wa.me/79999037173" class="cta-contact-btn">
-        <span class="cta-contact-icon">◉</span>
-        <span class="cta-contact-info">
-          <span class="cta-contact-label">Написать</span>
-          <span class="cta-contact-value">WhatsApp</span>
+      <a href="https://wa.me/79999037173" class="cta-btn">
+        <span class="cta-btn-icon">◉</span>
+        <span class="cta-btn-info">
+          <span class="cta-btn-label">Написать</span>
+          <span class="cta-btn-val">WhatsApp</span>
         </span>
       </a>
     </div>
   </div>
+
 </div>
 
-<!-- FOOTER -->
 <footer>
   <p class="footer-note">
-    <strong>Акмал</strong> · Мастер восточных практик · Худжанд, Таджикистан<br>
-    27 лет опыта · Тайцзицюань · Вин Чун · Цигун · Нэйгун · Чжэнь Цзю терапия
+    <strong>Акмал Тонг</strong> · Мастер восточных практик · Худжанд, Таджикистан<br>
+    28 лет практики · 20 лет преподавания<br>
+    Тайцзицюань · Вин Чун · Цигун · Нэйгун · Чжэнь Цзю
   </p>
 </footer>
 
 <script>
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('shown');
-        observer.unobserve(entry.target);
-      }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('shown'); obs.unobserve(e.target); }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
