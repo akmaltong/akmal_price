@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Карта состояния · Akmal Tong</title>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1c1a17;--gold:#9a7a3c;--seal:#a8322d;--line:#cfc6b4;--muted:#6f675a;
+  --serif:"PT Serif",Georgia,serif;--sans:"PT Sans",Arial,sans-serif;box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:#e9e4da;color:var(--ink);font:14px/1.45 var(--sans)}
+.page{width:210mm;max-width:100%;min-height:297mm;margin:16px auto;background:#fff;padding:14mm 14mm 12mm;position:relative}
+header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:14px}
+h1{font:700 26px/1.1 var(--serif);margin:0}
+.tj{display:block;font-size:.8em;color:var(--muted);font-weight:400}
+.who{font-size:12px;color:var(--muted);margin-top:4px}
+.seal{width:52px;height:52px;background:var(--seal);color:#fff;display:grid;place-items:center;font:700 30px serif;transform:rotate(-4deg);border-radius:4px}
+h2{font:700 16px var(--serif);margin:16px 0 6px;color:var(--gold)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+.f{border-bottom:1px solid var(--line);padding:4px 0 2px;min-height:34px}
+.f label{font-size:12px;color:var(--muted);display:block}
+.f.wide{grid-column:span 2}
+.box{border:1px solid var(--line);min-height:70px;padding:6px 8px}
+.box label{font-size:12px;color:var(--muted)}
+table{width:100%;border-collapse:collapse}
+th,td{border:1px solid var(--line);padding:6px;text-align:center}
+th{font-size:12px;font-weight:700;background:#f5f1e8}
+td:first-child{text-align:left;font-weight:700;width:34%}
+td:first-child .tj{font-weight:400}
+.hint{font-size:12px;color:var(--muted);margin:4px 0 0}
+footer{margin-top:16px;display:flex;justify-content:space-between;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px}
+.print{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--ink);color:#fff;border:0;padding:12px 18px;font:700 15px var(--sans);border-radius:2px;cursor:pointer}
+@media print{body{background:#fff}.page{margin:0;width:auto;min-height:auto;padding:10mm}.print{display:none}@page{size:A4;margin:0}}
+@media (max-width:600px){.grid{grid-template-columns:1fr}.f.wide{grid-column:auto}.page{padding:18px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div>
+      <h1>Карта состояния<span class="tj">Харитаи ҳолат</span></h1>
+      <div class="who">Акмал Тонг · Академия Kungfuman · +992 11 404 60 50</div>
+    </div>
+    <div class="seal" aria-hidden="true">功</div>
+  </header>
+
+  <div class="grid">
+    <div class="f"><label>Имя / Ном</label></div>
+    <div class="f"><label>Дата начала / Санаи оғоз</label></div>
+    <div class="f"><label>Возраст / Синну сол</label></div>
+    <div class="f"><label>Программа / Барнома</label></div>
+    <div class="f wide"><label>С чем пришли / Бо чӣ омаданд</label></div>
+  </div>
+
+  <h2>Показатели · <span style="font-weight:400">Нишондиҳандаҳо</span></h2>
+  <table>
+    <thead><tr><th>1 — плохо · 10 — отлично</th><th>Старт<br>Оғоз</th><th>Месяц 1<br>Моҳи 1</th><th>Месяц 2<br>Моҳи 2</th><th>Месяц 3<br>Моҳи 3</th></tr></thead>
+    <tbody>
+      <tr><td>Отсутствие боли<span class="tj">Набудани дард</span></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Сон<span class="tj">Хоб</span></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Энергия<span class="tj">Қувват</span></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Спокойствие<span class="tj">Оромӣ</span></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Подвижность<span class="tj">Чаққонӣ</span></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+  <p class="hint">Все шкалы в одну сторону: чем выше число, тем лучше. Так рост сразу виден. · Ҳар қадар рақам баланд бошад, ҳамон қадар беҳтар.</p>
+
+  <h2>Диагностика · <span style="font-weight:400">Ташхис</span></h2>
+  <div class="grid">
+    <div class="box"><label>Пульс, язык, точки / Набз, забон, нуқтаҳо</label></div>
+    <div class="box"><label>Тело: зажатия, осанка / Бадан: гиреҳҳо, қомат</label></div>
+  </div>
+
+  <h2>План · <span style="font-weight:400">Нақша</span></h2>
+  <div class="grid">
+    <div class="box"><label>Методики на сеансах / Усулҳо дар сеансҳо</label></div>
+    <div class="box"><label>Домашняя практика / Амалияи хонагӣ</label></div>
+  </div>
+
+  <h2>Итог курса · <span style="font-weight:400">Натиҷаи курс</span></h2>
+  <div class="box" style="min-height:60px"><label>Что изменилось, что дальше / Чӣ тағйир ёфт, минбаъд чӣ</label></div>
+
+  <footer><span>Подпись мастера / Имзои устод ____________</span><span>@kung.fu_man</span></footer>
+</div>
+<button class="print" type="button" onclick="window.print()">Распечатать</button>
+</body>
+</html>
