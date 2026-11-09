@@ -19,15 +19,14 @@ html,body{background:#0b1813}
   transform:rotate(-4deg)}
 h1{font-family:'PT Serif',serif;font-weight:700;line-height:1.04;letter-spacing:-.01em}
 h3{font-family:'PT Serif',serif;font-weight:700;line-height:1.1}
-.title{font-size:96px;margin-top:30px}
-.title.sm{font-size:82px}
-.sub{color:var(--gold);font-size:46px;line-height:1.25;margin-top:16px;font-weight:600;
-  font-family:'PT Serif',serif}
+.title{font-size:92px;margin-top:30px}
+.title.sm{font-size:80px}
+.sub{color:var(--gold);font-size:46px;line-height:1.25;margin-top:16px;font-weight:600;font-family:'PT Serif',serif}
 .subg{color:var(--gold);font-size:37px;line-height:1.3;margin-top:20px;font-weight:400;max-width:21ch}
 .lead{color:var(--lite);font-size:35px;line-height:1.4;margin-top:22px;max-width:24ch}
-.kick{color:var(--gold);font-size:33px;font-weight:600;margin-top:26px}
+.kick{color:var(--gold);font-size:33px;font-weight:600;margin-top:26px;letter-spacing:.01em}
 .spacer{flex:1}
-.items{display:flex;flex-direction:column;gap:30px;margin-top:40px}
+.items{display:flex;flex-direction:column;gap:30px;margin-top:38px}
 .row{position:relative}
 .row::before{content:"";position:absolute;left:-70px;top:12px;width:22px;height:22px;
   border-radius:50%;background:var(--bg);border:5px solid var(--rail)}
@@ -42,12 +41,21 @@ h3{font-family:'PT Serif',serif;font-weight:700;line-height:1.1}
 .note{color:var(--lite);font-size:30px;line-height:1.4;margin-top:24px;opacity:.9;max-width:30ch}
 .qi{display:inline-block;background:rgba(201,185,138,.16);border:2px solid var(--gold);
   color:var(--gold);font-weight:600;font-size:30px;border-radius:999px;padding:6px 20px;margin-top:4px}
+/* photo cover */
+.cover .img{position:absolute;inset:0;background:#2b2f30 url(photo.jpg) center top/cover}
+.cover .scrim{position:absolute;inset:0;background:
+  linear-gradient(180deg, rgba(31,79,63,.30) 0%, rgba(31,79,63,0) 18%, rgba(31,79,63,0) 38%, rgba(31,79,63,.82) 74%, var(--bg) 100%),
+  linear-gradient(90deg, rgba(31,79,63,.34) 0%, rgba(31,79,63,0) 48%)}
+.cover .cseal{position:absolute;top:60px;left:64px}
+.cover .ctxt{position:absolute;left:64px;right:72px;bottom:72px}
+.cover h1{font-size:92px;text-shadow:0 2px 28px rgba(0,0,0,.35)}
 </style></head><body><div class="sheet">
-<div class="slide"><div class="pad"><div class="seal">按<br>摩</div><h1 class="title">Куда<br>прячутся<br>эмоции</h1><p class="subg">Тело и чувства в китайской медицине</p><div class="spacer"></div><p class="lead">Злишься — каменеют плечи. Боишься — слабеют ноги. В китайской традиции это не случайно.</p></div></div>
-<div class="slide"><div class="pad"><div class="seal">按<br>摩</div><h1 class="title sm">Эмоции<br>двигают энергию</h1><div class="items"><div class="row"><h3>В меру — это норма</h3><p>В китайской традиции считается: каждое чувство двигает энергию (ци) по-своему</p></div><div class="row"><h3>Слишком сильно или надолго</h3><p>Энергия «застревает» — и напряжение остаётся в теле</p></div></div><div class="spacer"></div><p class="note">Листайте → четыре частых примера</p></div></div>
-<div class="slide"><div class="pad"><div class="seal">按<br>摩</div><div class="kick">Эмоция 1</div><h1 class="title sm">Гнев</h1><div class="sub">→ Печень</div><div class="qi">Энергия идёт вверх</div><div class="items"><div class="row"><h3>Где отзывается</h3><p>Плечи, шея, сжатая челюсть, давление в висках, раздражительность</p></div><div class="row"><h3>Что помогает</h3><p>Расслабить плечи, шею и грудной отдел</p></div></div></div></div>
-<div class="slide"><div class="pad"><div class="seal">按<br>摩</div><div class="kick">Эмоция 2</div><h1 class="title sm">Тревога<br>и раздумья</h1><div class="sub">→ Селезёнка</div><div class="qi">Энергия «узлом»</div><div class="items"><div class="row"><h3>Где отзывается</h3><p>Тяжесть в животе, «мысли по кругу», усталость, застой</p></div><div class="row"><h3>Что помогает</h3><p>Мягкая работа с животом и спиной, дыхание</p></div></div></div></div>
-<div class="slide"><div class="pad"><div class="seal">按<br>摩</div><div class="kick">Эмоция 3</div><h1 class="title sm">Страх</h1><div class="sub">→ Почки</div><div class="qi">Энергия идёт вниз</div><div class="items"><div class="row"><h3>Где отзывается</h3><p>«Ноги ватные», поясница, беспокойный сон</p></div><div class="row"><h3>Что помогает</h3><p>Тепло и работа с поясницей, ощущение опоры</p></div></div></div></div>
-<div class="slide"><div class="pad"><div class="seal">按<br>摩</div><div class="kick">Эмоция 4</div><h1 class="title sm">Скорбь<br>и печаль</h1><div class="sub">→ Лёгкие</div><div class="qi">Энергия тает</div><div class="items"><div class="row"><h3>Где отзывается</h3><p>Поверхностное дыхание, тяжесть в груди, нет сил</p></div><div class="row"><h3>Что помогает</h3><p>Раскрытие груди и спокойное, глубокое дыхание</p></div></div></div></div>
+<div class="slide cover"><div class="img"></div><div class="scrim"></div><div class="cseal"><div class="seal">按<br>摩</div></div><div class="ctxt"><p class="subg" style="margin:0 0 14px">Тело и чувства в китайской медицине</p><h1>Куда прячутся эмоции</h1></div></div>
+<div class="slide"><div class="pad"><div class="seal">按<br>摩</div><h1 class="title sm">Пять стихий<br>У-син</h1><div class="items"><div class="row"><h3>Дерево · огонь · земля · металл · вода</h3><p>У каждой стихии — свой орган и своя эмоция</p></div><div class="row"><h3>Эмоция двигает энергию</h3><p>В китайской традиции считается: в меру — норма, но сильное или долгое чувство «застревает» в теле</p></div></div><div class="spacer"></div><p class="note">Листайте → пять стихий по порядку</p></div></div>
+<div class="slide"><div class="pad"><div class="seal">按<br>摩</div><div class="kick">Стихия · Дерево</div><h1 class="title sm">Гнев</h1><div class="sub">→ Печень</div><div class="qi">Энергия идёт вверх</div><div class="items"><div class="row"><h3>Где отзывается</h3><p>Плечи, шея, сжатая челюсть, давление в висках, раздражительность</p></div><div class="row"><h3>Что помогает</h3><p>Расслабить плечи, шею и грудной отдел</p></div></div></div></div>
+<div class="slide"><div class="pad"><div class="seal">按<br>摩</div><div class="kick">Стихия · Огонь</div><h1 class="title sm">Радость</h1><div class="sub">→ Сердце</div><div class="qi">Энергия рассеивается</div><div class="items"><div class="row"><h3>Где отзывается</h3><p>Перевозбуждение, частое сердцебиение, рассеянность, трудно уснуть</p></div><div class="row"><h3>Что помогает</h3><p>Успокоить ритм, заземлить, мягкое дыхание</p></div></div></div></div>
+<div class="slide"><div class="pad"><div class="seal">按<br>摩</div><div class="kick">Стихия · Земля</div><h1 class="title sm">Тревога<br>и раздумья</h1><div class="sub">→ Селезёнка</div><div class="qi">Энергия «узлом»</div><div class="items"><div class="row"><h3>Где отзывается</h3><p>Тяжесть в животе, «мысли по кругу», усталость, застой</p></div><div class="row"><h3>Что помогает</h3><p>Мягкая работа с животом и спиной, дыхание</p></div></div></div></div>
+<div class="slide"><div class="pad"><div class="seal">按<br>摩</div><div class="kick">Стихия · Металл</div><h1 class="title sm">Скорбь<br>и печаль</h1><div class="sub">→ Лёгкие</div><div class="qi">Энергия тает</div><div class="items"><div class="row"><h3>Где отзывается</h3><p>Поверхностное дыхание, тяжесть в груди, нет сил</p></div><div class="row"><h3>Что помогает</h3><p>Раскрытие груди и спокойное, глубокое дыхание</p></div></div></div></div>
+<div class="slide"><div class="pad"><div class="seal">按<br>摩</div><div class="kick">Стихия · Вода</div><h1 class="title sm">Страх</h1><div class="sub">→ Почки</div><div class="qi">Энергия идёт вниз</div><div class="items"><div class="row"><h3>Где отзывается</h3><p>«Ноги ватные», поясница, беспокойный сон</p></div><div class="row"><h3>Что помогает</h3><p>Тепло и работа с поясницей, ощущение опоры</p></div></div></div></div>
 <div class="slide"><div class="pad"><div class="seal">按<br>摩</div><h1 class="title sm">Что с этим<br>делать</h1><div class="items"><div class="row card"><h3>Сеанс по меридианам</h3><p>Работаем с телом и зажимами, в которых «сидит» напряжение</p></div><div class="row"><div class="lbl">Запись</div><div class="big">@akmaltong</div></div></div><div class="spacer"></div><p class="note">Это работа с телом, не психотерапия. При тревоге и тяжёлых переживаниях — к психологу или врачу, можно совмещать.</p></div></div>
 </div></body></html>
